@@ -1,18 +1,24 @@
-# Predicting-Calorie-ExpenditurePreprocessing Steps
+## Classification Model Training and Evaluation
+This project demonstrates key steps in training and evaluating classification models (Decision Trees, Random Forests) using Python's scikit-learn.
 
-## Process of Cleaning the data 
-### Explored the Dataset:
-Checked data types, missing values, and stats with df.info(), df.head(), and df.describe(). No missing values found.
+## Key Steps:
+### Decision Tree Training & Visualization:
 
-### Encoded Categorical Data: 
-Converted Sex ('male'/'female') to numerical (0/1) using pd.get_dummies(), creating Sex_male (1 for male, 0 for female).
+ Train a basic Decision Tree.
+Visualize the tree to understand its decision process.
+### Overfitting Analysis & Depth Control:
 
-### Standardized Numerical Features: 
-Standardized Age, Height, Weight, Duration, Heart_Rate, and Body_Temp using StandardScaler (mean=0, std=1).
+Compare unconstrained vs. depth-limited trees to show overfitting.
+Illustrate how max_depth controls model complexity.
+### Random Forest Training & Comparison:
 
-### Handled Outliers:
-Visualized outliers with boxplots, used IQR method (Q1, Q3, IQR), and capped outliers by setting values outside bounds (Q1-1.5IQR, Q3+1.5IQR) to the bounds, applied to Calories and numerical columns.
+Train an ensemble RandomForestClassifier.
+Compare its accuracy against single Decision Trees, showcasing ensemble benefits.
+### Feature Importance Interpretation:
 
-## Tools Used
+Extract and visualize feature importance from the Random Forest.
+Identify which input features are most influential for predictions.
+### Cross-Validation for Robust Evaluation:
 
-Python, Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn
+Use k-fold cross-validation (cross_val_score) for more reliable performance estimates.
+Obtain mean and standard deviation of accuracy across multiple data splits.
