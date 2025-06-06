@@ -1,36 +1,36 @@
-# K-Nearest Neighbors (KNN) Classifier on Iris Dataset
 
-This project demonstrates the application of the K-Nearest Neighbors (KNN) classification algorithm using Python's `scikit-learn` library. It covers data normalization, model training, hyperparameter tuning (K value), performance evaluation, and visualization of decision boundaries and feature importance.
+# Breast Cancer Classification with Support Vector Machines (SVMs)
+This project demonstrates the process of building and evaluating Support Vector Machine (SVM) models for binary classification using the well-known Breast Cancer Wisconsin (Diagnostic) dataset.
 
 ## Project Steps:
+ 
+1. **Data Loading and Preparation:**
 
-1.  **Dataset Selection and Feature Normalization:**
-    * The **Iris dataset** was chosen for this classification task. This classic dataset contains measurements of iris flowers and their corresponding species.
-    * **Numerical features** (sepal length, sepal width, petal length, petal width) were normalized using `MinMaxScaler`. This scales all features to a range between 0 and 1, which is crucial for distance-based algorithms like KNN to prevent features with larger scales from disproportionately influencing the distance calculations.
+* Loaded the Breast Cancer dataset from scikit-learn.
+* Split the data into training and testing sets to evaluate model performance on unseen data.
+* Standardized the features (scaled them to a common range) using StandardScaler. This is crucial for SVMs as they are sensitive to feature scales.
 
-2.  **KNeighborsClassifier Implementation:**
-    * The `KNeighborsClassifier` from `sklearn.neighbors` was used to build the classification model.
-    * The dataset was split into training and testing sets (70% training, 30% testing) to evaluate the model's generalization performance on unseen data.
+2. ** SVM Model Training:** 
 
-3.  **Experimentation with Different K Values:**
-    * The performance of the KNN model was explored by varying the number of neighbors (`K`) from 1 to 20.
-    * For each `K` value, the model was trained, and its accuracy was recorded on both the training and test sets.
-    * A plot visualizing "Accuracy vs. K Value" was generated to identify the optimal `K` that yields the best balance between bias and variance (typically maximizing test accuracy).
+* Trained two initial SVM models:
+* One with a Linear Kernel: Suitable for linearly separable data.
+* One with an RBF (Radial Basis Function) Kernel: Effective for non-linearly separable data by implicitly mapping it to a higher-dimensional space.
+3. **Decision Boundary Visualization (2D):** 
 
-4.  **Model Evaluation:**
-    * The model's performance (using the optimal or a chosen `K`) was evaluated using standard classification metrics:
-        * **Accuracy Score:** The proportion of correctly classified instances.
-        * **Confusion Matrix:** A table showing the number of correct and incorrect predictions made by the classification model, broken down by each class.
+* Used Principal Component Analysis (PCA) to reduce the dataset's features to just two dimensions.
+* Trained an RBF SVM on this 2D data.
+* Visualized the model's decision boundary on a plot, showing how the SVM separates the two classes (malignant vs. benign) in a simplified 2D representation.
 
-5.  **Visualization of Decision Boundaries:**
-    * To understand how the KNN model separates different classes, decision boundaries were visualized.
-    * As 4D visualization is not possible, the model's behavior was plotted using two key features: 'petal length (cm)' and 'petal width (cm)', which are highly discriminative in the Iris dataset.
-    * The plot displays the decision regions (areas where the model predicts a certain class) along with the actual data points, providing insight into the model's classification logic.
+4. ** Hyperparameter Tuning with GridSearchCV: ** 
 
-6.  **Feature Importance (Permutation Importance):**
-    * While KNN doesn't inherently provide feature importance like tree-based models, **Permutation Importance** was used to estimate the contribution of each feature to the model's predictive power.
-    * This method assesses how much the model's accuracy decreases when the values of a single feature are randomly shuffled. A larger decrease indicates higher importance.
-    * A box plot of feature importance scores was generated to visually compare the influence of each feature.
+* Performed hyperparameter tuning to find the optimal settings for the RBF kernel SVM.
+* Used GridSearchCV to systematically search for the best combination of the C parameter (regularization strength) and the gamma parameter (RBF kernel coefficient, controlling influence spread). This helps prevent overfitting and underfitting.
+
+5. ** Cross-Validation for Robust Evaluation: **
+
+
+* Applied stratified k-fold cross-validation to evaluate the performance of the best-tuned SVM model.
+* Cross-validation provides a more reliable estimate of the model's generalization ability by training and testing on multiple different subsets of the data, reducing reliance on a single train-test split.
 
 ---
 
